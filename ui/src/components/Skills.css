@@ -1,0 +1,364 @@
+/* Skills Section Layout */
+.skills-section {
+    position: relative;
+    padding: 6rem 0;
+    overflow: visible;
+    /* changed from hidden to allowing tooltips/shadows */
+    background: transparent;
+    /* Ensure global animation shows through */
+}
+
+/* Horizontal Scroll Wrapper */
+.skills-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.scroll-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gold);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 20;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    backdrop-filter: blur(5px);
+}
+
+.scroll-btn:hover {
+    background: var(--gold);
+    color: #000;
+    transform: scale(1.1);
+}
+
+.scroll-btn.left {
+    margin-right: 0.5rem;
+}
+
+.scroll-btn.right {
+    margin-left: 0.5rem;
+}
+
+.skills-horizontal-container {
+    display: flex;
+    margin: 2rem 0;
+    overflow-x: auto;
+    padding: 4rem 1rem;
+    /* Huge vertical padding for text labels */
+    flex: 1;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* IE 10+ */
+    scroll-behavior: smooth;
+    cursor: grab;
+    /* Indicate drag capability */
+}
+
+.skills-horizontal-container:active {
+    cursor: grabbing;
+}
+
+.skills-horizontal-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Horizontal Track System */
+.skills-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    /* Gap handled by line width now */
+    position: relative;
+    padding: 0 4rem;
+    z-index: 5;
+    margin: 0 auto;
+}
+
+.skill-node-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: 100px;
+    /* Spacer matching line width */
+}
+
+.skill-node-wrapper:first-child {
+    margin-left: 0;
+    /* No spacer for first item */
+}
+
+/* Connectors - Absolute Center Logic */
+.node-line {
+    position: absolute;
+    top: 50%;
+    /* Center vertically exact */
+    right: 100%;
+    /* Connect to previous node */
+    width: 100px;
+    /* Space between nodes */
+    height: 4px;
+    /* Thickness */
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-50%);
+    z-index: -1;
+    /* Behind nodes */
+    border-radius: 2px;
+}
+
+.skill-node-wrapper:first-child .node-line {
+    display: none;
+    /* No line before first node */
+}
+
+/* Data Flow Animation */
+.node-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: translateX(-100%);
+    animation: signalFlow 2s infinite linear;
+    box-shadow: 0 0 10px var(--gold);
+}
+
+@keyframes signalFlow {
+    100% {
+        transform: translateX(250%);
+    }
+}
+
+/* Skill Node (Circle) */
+.skill-node {
+    width: 80px;
+    /* Larger */
+    height: 80px;
+    border-radius: 50%;
+    background: #050505;
+    /* Solid dark background to hide line behind */
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 2;
+    /* Above line */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    flex-shrink: 0;
+}
+
+/* Visible Label */
+.skill-node-label {
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: normal;
+    /* Allow wrapping */
+    text-align: center;
+    width: 120px;
+    /* Constrained width */
+    line-height: 1.2;
+    transition: color 0.3s;
+    pointer-events: none;
+}
+
+.skill-node:hover {
+    border-color: var(--gold);
+    color: #fff;
+    background: #000;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+    /* Ambient gold glow */
+    z-index: 9999 !important;
+    transform: scale(1.15);
+}
+
+.skill-node:hover .skill-node-label,
+.skill-node.active .skill-node-label {
+    color: #fff;
+    font-weight: 700;
+}
+
+.skill-node.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+    transform: scale(1.25);
+    z-index: 5000;
+}
+
+/* Detail Panel Area */
+.skill-detail-panel {
+    margin-top: 1rem;
+    min-height: 350px;
+    display: flex;
+    justify-content: center;
+}
+
+.detail-content {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle panel background glow */
+.detail-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.05), transparent 70%);
+    pointer-events: none;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+}
+
+.detail-icon-large {
+    color: var(--gold);
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+}
+
+.detail-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.detail-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+}
+
+.detail-body {
+    animation: fadeIn 0.5s ease;
+}
+
+.detail-overview {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.detail-points-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.detail-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.point-bullet {
+    color: var(--gold);
+}
+
+.detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tech-tag {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.tech-tag:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-horizontal-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .skills-track {
+        padding: 0 1rem;
+    }
+
+    .node-line {
+        width: 30px;
+    }
+
+    .detail-points-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-content {
+        padding: 1.5rem;
+    }
+
+    .detail-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}

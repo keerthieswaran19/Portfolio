@@ -1,0 +1,156 @@
+.app {
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Square Background Design */
+.app::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Specific Section Animations - Digital Rain / Circuit */
+
+/* Featured Projects: Digital Rain / Matrix Effect */
+.section-projects-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(30, 144, 255, .05) 25%, rgba(30, 144, 255, .05) 26%, transparent 27%, transparent 74%, rgba(30, 144, 255, .05) 75%, rgba(30, 144, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(30, 144, 255, .05) 25%, rgba(30, 144, 255, .05) 26%, transparent 27%, transparent 74%, rgba(30, 144, 255, .05) 75%, rgba(30, 144, 255, .05) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  animation: matrixMove 60s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes matrixMove {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 1000px;
+  }
+}
+
+/* Experience: Circuit Board Pulse */
+.section-experience-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Global White & Gold Square Animation */
+.bg-squares {
+  position: fixed;
+  /* Keep fixed to animate throughout scroll */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Higher contrast for visibility */
+  background: radial-gradient(circle at 50% 100%, rgba(20, 20, 20, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.square {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  /* Default White */
+  width: 100px;
+  height: 100px;
+  animation: floatSquare 20s infinite linear;
+  backdrop-filter: blur(2px);
+}
+
+/* Distinct White & Gold Squares */
+.sq-1 {
+  top: 15%;
+  left: 10%;
+  width: 120px;
+  height: 120px;
+  border-color: rgba(255, 215, 0, 0.2);
+  /* GOLD - High Visibility */
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+  /* Gold Glow */
+  animation-duration: 25s;
+}
+
+.sq-2 {
+  top: 80%;
+  left: 20%;
+  width: 80px;
+  height: 80px;
+  border-color: rgba(255, 255, 255, 0.1);
+  /* WHITE */
+  animation-duration: 30s;
+  animation-delay: -5s;
+}
+
+.sq-3 {
+  top: 40%;
+  left: 80%;
+  width: 150px;
+  height: 150px;
+  border-color: rgba(255, 215, 0, 0.15);
+  /* GOLD */
+  animation-duration: 35s;
+}
+
+.sq-4 {
+  top: 70%;
+  left: 90%;
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 0.15);
+  /* WHITE */
+  animation-duration: 40s;
+}
+
+.sq-5 {
+  top: 20%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  /* GOLD */
+  transform: rotate(45deg);
+  animation-duration: 28s;
+}
+
+@keyframes floatSquare {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-20vh) rotate(360deg);
+    opacity: 0;
+  }
+}

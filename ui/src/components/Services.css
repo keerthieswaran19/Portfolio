@@ -1,0 +1,197 @@
+.services-section {
+    padding: 8rem 0;
+    background: radial-gradient(circle at 10% 10%, rgba(255, 215, 0, 0.03) 0%, transparent 40%);
+}
+
+.services-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.services-badge {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--service-color);
+    opacity: 0.3;
+    transition: opacity 0.4s;
+}
+
+.service-card:hover {
+    border-color: var(--service-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--service-color);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.icon-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--service-color);
+    opacity: 0.1;
+    filter: blur(15px);
+    border-radius: inherit;
+}
+
+.service-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.service-desc {
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.service-footer {
+    margin-top: auto;
+}
+
+.learn-more {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.service-card:hover .learn-more {
+    color: var(--service-color);
+}
+
+/* AI Synergy Banner */
+.ai-synergy-banner {
+    margin-top: 5rem;
+    background: linear-gradient(90deg, #050505 0%, #111 50%, #050505 100%);
+    padding: 3rem;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-synergy-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: var(--gold);
+    box-shadow: 0 0 20px var(--gold);
+}
+
+.synergy-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #25d366;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #25d366;
+    animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.synergy-status span {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.ai-synergy-banner h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ai-synergy-banner p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #888;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .ai-synergy-banner {
+        padding: 2rem;
+    }
+}
