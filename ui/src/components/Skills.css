@@ -336,16 +336,39 @@
 
 @media (max-width: 768px) {
     .skills-horizontal-container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding: 3rem 1rem;
     }
 
     .skills-track {
-        padding: 0 1rem;
+        padding: 0 2rem;
+    }
+
+    .skill-node-wrapper {
+        margin-left: 40px;
+        /* Synchronized with node-line width */
     }
 
     .node-line {
-        width: 30px;
+        width: 40px;
+    }
+
+    .skill-node {
+        width: 60px;
+        height: 60px;
+    }
+
+    .skill-node.active {
+        transform: scale(1.15);
+    }
+
+    .skill-node:hover {
+        transform: scale(1.1);
+    }
+
+    .skill-node-label {
+        font-size: 0.75rem;
+        bottom: -35px;
+        width: 100px;
     }
 
     .detail-points-grid {
@@ -360,5 +383,40 @@
         flex-direction: column;
         text-align: center;
         gap: 1rem;
+    }
+
+    .detail-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-track {
+        padding: 0 1rem;
+    }
+
+    .skill-node-wrapper {
+        margin-left: 30px;
+    }
+
+    .node-line {
+        width: 30px;
+    }
+
+    .skill-node {
+        width: 50px;
+        height: 50px;
+    }
+
+    .skill-node-label {
+        font-size: 0.7rem;
+        bottom: -30px;
+        width: 80px;
+    }
+
+    .scroll-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
     }
 }

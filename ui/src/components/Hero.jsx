@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 import './Hero.css';
 
 const Hero = ({ onContactClick }) => {
@@ -49,8 +49,12 @@ const Hero = ({ onContactClick }) => {
 
                         <div className="hero-buttons">
                             <button onClick={onContactClick} className="btn-primary hero-btn">
-                                Contact Me
+                                Get in Touch
                             </button>
+
+                            <a href="/resume.pdf" download className="btn-outline hero-btn">
+                                <FileText size={20} /> Resume
+                            </a>
 
                             <div className="social-links">
                                 <a href="https://github.com/keerthieswaran19" target="_blank" rel="noopener noreferrer" className="social-link"><Github size={20} /></a>
