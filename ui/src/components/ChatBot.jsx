@@ -78,7 +78,7 @@ const ChatBot = () => {
                         <div className="header-agent">
                             <Bot size={20} className="agent-icon" />
                             <div className="agent-status">
-                                <span className="agent-name">Antigravity Agent</span>
+                                <span className="agent-name">The BOT</span>
                                 <span className="status-text">Active Now</span>
                             </div>
                         </div>

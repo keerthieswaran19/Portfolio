@@ -2,7 +2,8 @@
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    z-index: 1000;
+    z-index: 10001;
+    /* Higher than navbar 9999 */
 }
 
 /* Unique Portal Trigger */
@@ -227,4 +228,58 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .chatbot-container {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .chatbot-toggle {
+        width: 55px;
+        height: 55px;
+    }
+
+    .glass-chat {
+        width: calc(100vw - 2rem);
+        height: 70vh;
+        bottom: 70px;
+        border-radius: 20px;
+        right: 0;
+    }
+
+    .chatbot-header {
+        padding: 1.25rem;
+    }
+
+    .header-agent {
+        gap: 0.75rem;
+    }
+
+    .agent-icon {
+        padding: 0.5rem;
+    }
+
+    .chatbot-messages {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .message-bubble {
+        padding: 1rem 1.25rem;
+        font-size: 0.85rem;
+    }
+
+    .chatbot-input-v2 {
+        margin: 1rem;
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass-chat {
+        height: 80vh;
+        width: calc(100vw - 1.5rem);
+    }
 }

@@ -13,17 +13,44 @@ import './App.css';
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [showContactPage, setShowContactPage] = useState(false);
-
   React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+
+    const handleHashChange = () => {
+      setShowContactPage(window.location.hash === '#contact');
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Initial check
+    handleHashChange();
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
+  const openContact = () => {
+    window.location.hash = 'contact';
+  };
+
+  const closeContact = () => {
+    // If we're at #contact, the browser's back button will take us to the previous state
+    // But for the in-app close button, we want to go back or clear hash
+    if (window.location.hash === '#contact') {
+      window.history.back();
+    } else {
+      window.location.hash = '';
+    }
+  };
+
   if (showContactPage) {
-    return <ContactPage onClose={() => setShowContactPage(false)} />;
+    return <ContactPage onClose={closeContact} />;
   }
 
   return (
@@ -35,8 +62,8 @@ function App() {
         <div className="square sq-4"></div>
         <div className="square sq-5"></div>
       </div>
-      <Navbar scrolled={scrolled} onContactClick={() => setShowContactPage(true)} />
-      <Hero onContactClick={() => setShowContactPage(true)} />
+      <Navbar scrolled={scrolled} onContactClick={openContact} />
+      <Hero onContactClick={openContact} />
       <About />
       <Skills />
       <Projects />

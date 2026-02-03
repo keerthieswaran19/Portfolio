@@ -121,7 +121,7 @@ const skillsData = [
     },
     {
         id: 'ml',
-        title: 'Machine Learning (ML)',
+        title: 'Machine\nLearning (ML)',
         icon: Activity,
         description: 'Predictive Modeling & Analytics',
         content: {
@@ -138,7 +138,7 @@ const skillsData = [
     },
     {
         id: 'dl',
-        title: 'Deep Learning (DL)',
+        title: 'Deep\nLearning (DL)',
         icon: Brain,
         description: 'Neural Networks & Complex Patterns',
         content: {
@@ -205,7 +205,14 @@ const Skills = () => {
                                             whileTap={{ scale: 0.95 }}
                                         >
                                             <Icon size={24} />
-                                            <span className="skill-node-label">{skill.title}</span>
+                                            <span className="skill-node-label">
+                                                {skill.title.split('\n').map((line, i) => (
+                                                    <React.Fragment key={i}>
+                                                        {line}
+                                                        {i < skill.title.split('\n').length - 1 && <br />}
+                                                    </React.Fragment>
+                                                ))}
+                                            </span>
                                         </motion.div>
                                     </div>
                                 );

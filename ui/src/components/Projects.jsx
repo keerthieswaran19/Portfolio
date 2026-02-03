@@ -11,27 +11,35 @@ const Projects = () => {
     const videoRef = useRef(null);
 
     const handleProjectClick = (project) => {
-        setSelectedProject(project);
-        setIsSimulating(true);
-        setVideoReady(false);
-
-        // Fail-safe: Force simulation clear after 3 seconds if video takes too long
-        setTimeout(() => {
-            setIsSimulating(false);
-        }, 400);
-    };
-
-    const handleVideoReady = () => {
-        setVideoReady(true);
-        // Once video is ready, clear simulation instantly for that "loaded in seconds" feel
-        setIsSimulating(false);
+        const index = resumeData.projects.findIndex(p => p.title === project.title);
+        window.location.hash = `project-${index}`;
     };
 
     useEffect(() => {
-        if (selectedProject && videoRef.current) {
-            videoRef.current.load();
-        }
+        const handleHash = () => {
+            const hash = window.location.hash;
+            if (hash.startsWith('#project-')) {
+                const index = parseInt(hash.replace('#project-', ''));
+                if (!isNaN(index) && resumeData.projects[index]) {
+                    const project = resumeData.projects[index];
+                    setSelectedProject(project);
+                    setIsSimulating(true);
+                    setVideoReady(false);
+                    setTimeout(() => setIsSimulating(false), 400);
+                }
+            } else if (selectedProject) {
+                setSelectedProject(null);
+            }
+        };
+
+        window.addEventListener('hashchange', handleHash);
+        handleHash(); // Check on mount
+        return () => window.removeEventListener('hashchange', handleHash);
     }, [selectedProject]);
+
+    const closeProject = () => {
+        window.location.hash = 'projects';
+    };
 
     // Get icon based on project tech or title
     const getProjectIcon = (title) => {
@@ -124,7 +132,7 @@ const Projects = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        onClick={() => setSelectedProject(null)}
+                        onClick={closeProject}
                     >
                         <motion.div
                             className="modal-content presentation-mode"
@@ -134,7 +142,7 @@ const Projects = () => {
                             onClick={(e) => e.stopPropagation()}
                             style={{ "--modal-accent": selectedProject.themeColor }}
                         >
-                            <button className="modal-close" onClick={() => setSelectedProject(null)}>
+                            <button className="modal-close" onClick={closeProject}>
                                 <X size={24} />
                             </button>
 

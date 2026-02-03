@@ -167,14 +167,14 @@
 /* Visible Label */
 .skill-node-label {
     position: absolute;
-    bottom: -45px;
+    top: calc(100% + 15px);
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.85rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.5);
-    white-space: normal;
-    /* Allow wrapping */
+    white-space: pre-wrap;
+    /* Allow manual wrapping */
     text-align: center;
     width: 120px;
     /* Constrained width */
@@ -344,12 +344,12 @@
     }
 
     .skill-node-wrapper {
-        margin-left: 40px;
-        /* Synchronized with node-line width */
+        margin-left: 110px;
+        /* Further increased to prevent layout overlap */
     }
 
     .node-line {
-        width: 40px;
+        width: 110px;
     }
 
     .skill-node {
@@ -367,7 +367,7 @@
 
     .skill-node-label {
         font-size: 0.75rem;
-        bottom: -35px;
+        top: calc(100% + 12px);
         width: 100px;
     }
 
@@ -396,11 +396,11 @@
     }
 
     .skill-node-wrapper {
-        margin-left: 30px;
+        margin-left: 90px;
     }
 
     .node-line {
-        width: 30px;
+        width: 90px;
     }
 
     .skill-node {
@@ -410,7 +410,7 @@
 
     .skill-node-label {
         font-size: 0.7rem;
-        bottom: -30px;
+        top: calc(100% + 10px);
         width: 80px;
     }
 
