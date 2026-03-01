@@ -1,22 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Briefcase } from 'lucide-react';
+import { ArrowLeft, Briefcase, Globe, Award, Zap } from 'lucide-react';
 import { companiesTimeline } from '../data';
+import Navbar from './Navbar';
+import Signature from './Signature';
 import './CompaniesShowcase.css';
 
 const CompaniesShowcase = ({ onClose }) => {
     return (
         <div className="showcase-page companies-showcase-page">
+            <Navbar scrolled={true} onContactClick={() => window.location.hash = 'contact'} />
+
             <header className="showcase-header">
                 <button className="back-btn" onClick={onClose}>
                     <ArrowLeft size={24} />
                     <span>Back</span>
                 </button>
-                <h1 className="header-title">Companies</h1>
+                <h1 className="header-title">Professional Journey</h1>
             </header>
 
             <div className="showcase-container">
-                {/* Hero Banner */}
                 <motion.div
                     className="showcase-hero"
                     initial={{ opacity: 0, y: 30 }}
@@ -24,40 +27,71 @@ const CompaniesShowcase = ({ onClose }) => {
                     transition={{ duration: 0.6 }}
                 >
                     <span className="showcase-count">{companiesTimeline.length}+</span>
-                    <h2>Professional <span className="gold">Journey</span></h2>
-                    <p>A timeline of organizations where I've contributed and grown</p>
+                    <h2>Orbital <span className="gold">Relay</span></h2>
+                    <p>A sophisticated timeline of my career milestones and expertise</p>
                 </motion.div>
 
-                {/* Vertical Journey Timeline */}
-                <div className="journey-timeline">
-                    <div className="journey-line"></div>
+                <div className="orbital-relay">
+                    <div className="relay-core-line"></div>
+
                     {companiesTimeline.map((item, idx) => (
                         <motion.div
                             key={idx}
-                            className={`journey-card ${idx % 2 === 0 ? 'left' : 'right'}`}
-                            initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.15, duration: 0.5 }}
+                            className={`relay-node ${idx % 2 === 0 ? 'left' : 'right'}`}
+                            initial={{ opacity: 0, x: idx % 2 === 0 ? -100 : 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.8, ease: "circOut" }}
                         >
-                            <div className="journey-dot" style={{ borderColor: item.color, boxShadow: `0 0 15px ${item.color}50` }}></div>
-                            <div className="journey-content" style={{ '--company-color': item.color }}>
-                                <div className="journey-top-row">
-                                    <span className="journey-type" style={{ background: `${item.color}20`, color: item.color }}>{item.type}</span>
-                                    <span className="journey-period">{item.period}</span>
+                            <div className="orbital-path">
+                                <motion.div
+                                    className="orbital-orb"
+                                    style={{ '--accent-glow': item.color }}
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                                >
+                                    <div className="orb-satellite"></div>
+                                </motion.div>
+                            </div>
+
+                            <div className="relay-content-box" style={{ '--node-color': item.color }}>
+                                <div className="node-glitch-border"></div>
+                                <div className="node-header">
+                                    <div className="node-icon-sphere" style={{ background: `${item.color}20` }}>
+                                        <Briefcase size={20} style={{ color: item.color }} />
+                                    </div>
+                                    <div className="node-title-group">
+                                        <h3 style={{ color: item.color }}>{item.company}</h3>
+                                        <span className="node-role">{item.role}</span>
+                                    </div>
                                 </div>
-                                <h3 style={{ color: item.color }}>{item.company}</h3>
-                                <span className="journey-role"><Briefcase size={14} /> {item.role}</span>
-                                <p className="journey-desc">{item.description}</p>
-                                <div className="journey-highlights">
-                                    {item.highlights.map((h, i) => (
-                                        <span key={i} className="highlight-pill" style={{ borderColor: `${item.color}40` }}>{h}</span>
-                                    ))}
+
+                                <div className="node-body">
+                                    <div className="node-stats-row">
+                                        <div className="node-stat">
+                                            <Zap size={12} />
+                                            <span>{item.type}</span>
+                                        </div>
+                                        <div className="node-stat">
+                                            <Globe size={12} />
+                                            <span>{item.period}</span>
+                                        </div>
+                                    </div>
+                                    <p className="node-description">{item.description}</p>
+                                    <div className="node-tech-pills">
+                                        {item.highlights.map((h, i) => (
+                                            <span key={i} className="tech-pill" style={{ borderColor: `${item.color}40` }}>
+                                                {h}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
             </div>
+            <Signature />
         </div>
     );
 };

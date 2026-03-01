@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Rocket, CheckCircle2 } from 'lucide-react';
 import { allShowcaseProjects } from '../data';
+import Navbar from './Navbar';
+import Signature from './Signature';
 import './ProjectsShowcase.css';
 
 const ProjectsShowcase = ({ onClose }) => {
@@ -10,6 +12,8 @@ const ProjectsShowcase = ({ onClose }) => {
 
     return (
         <div className="showcase-page projects-showcase-page">
+            <Navbar scrolled={true} onContactClick={() => window.location.hash = 'contact'} />
+
             <header className="showcase-header">
                 <button className="back-btn" onClick={onClose}>
                     <ArrowLeft size={24} />
@@ -106,6 +110,7 @@ const ProjectsShowcase = ({ onClose }) => {
                     </div>
                 </div>
             </div>
+            <Signature />
         </div>
     );
 };

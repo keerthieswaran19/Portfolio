@@ -197,7 +197,7 @@ export const allShowcaseProjects = [
         title: "Client Data Governance Platform",
         subtitle: "Security & Compliance",
         description: "Built secure data handling protocols for healthcare claims processing with privacy-first architecture.",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f2?auto=format&fit=crop&q=80&w=800",
+        image: "/data-governance.png",
         tech: ["Data Privacy", "Claims Processing", "Compliance"],
         status: "Completed",
         themeColor: "#2ecc71"
