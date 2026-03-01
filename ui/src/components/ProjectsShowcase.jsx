@@ -23,7 +23,7 @@ const ProjectsShowcase = ({ onClose }) => {
                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 215, 0, 0.1)' }}
             >
                 <ArrowLeft size={20} />
-                <span>Return</span>
+                <span>Secure Exit</span>
             </motion.button>
 
             <header className="showcase-header">

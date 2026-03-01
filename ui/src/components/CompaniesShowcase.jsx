@@ -1,158 +1,146 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeft, Briefcase, Cpu, Layers, Terminal, Database, Activity } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Briefcase, Cpu, Shield, Terminal, Settings, Activity, HardDrive } from 'lucide-react';
 import { companiesTimeline } from '../data';
 import Navbar from './Navbar';
 import Signature from './Signature';
 import './CompaniesShowcase.css';
 
-const TechStream = ({ side, color }) => {
-    const dataStrings = [
-        "0x4F2A_DECRYPT", "MEM_ALLOC_SYNC", "RAG_NODE_ACTIVE",
-        "LOAD_BALANCER_v2", "QUERY_LATENCY_0.02ms", "BUFFER_OVERFLOW_GUARD",
-        "STP_HANDSHAKE_OK", "MOD_RELOAD_77%", "CACHE_HIT_99.1%"
-    ];
-
+const WireframeDiagram = ({ type, color }) => {
+    // Renders different SVG wireframes based on "type"
     return (
-        <div className={`tech-stream ${side}`}>
-            <div className="stream-line" style={{ background: `linear-gradient(to bottom, transparent, ${color}40, transparent)` }}></div>
-            <div className="stream-data">
-                {Array.from({ length: 15 }).map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className="data-bit"
-                        initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: [0, 1, 0], y: -500 }}
-                        transition={{
-                            duration: 5 + Math.random() * 5,
-                            repeat: Infinity,
-                            delay: Math.random() * 5,
-                            ease: "linear"
-                        }}
-                    >
-                        {dataStrings[Math.floor(Math.random() * dataStrings.length)]}
-                    </motion.div>
-                ))}
-            </div>
+        <div className="wireframe-container">
+            <svg width="100%" height="100%" viewBox="0 0 400 400" fill="none">
+                <motion.path
+                    d="M50 50L350 50L350 350L50 350Z"
+                    stroke={color} strokeWidth="1" strokeDasharray="5 5"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 10, repeat: Infinity }}
+                />
+                <circle cx="200" cy="200" r="100" stroke={color} strokeWidth="0.5" opacity="0.3" />
+                <path d="M200 50V350M50 200H350" stroke={color} strokeWidth="0.5" opacity="0.2" />
+                {/* Node Points */}
+                {[50, 200, 350].map(x => [50, 200, 350].map(y => (
+                    <motion.rect
+                        key={`${x}-${y}`}
+                        x={x - 2} y={y - 2} width="4" height="4"
+                        fill={color}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 1, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: Math.random() * 2 }}
+                    />
+                )))}
+                {/* Binary HUD */}
+                <text x="60" y="340" fill={color} fontSize="8" fontFamily="monospace" opacity="0.4">
+                    SYS_LOAD: 42% | MEM: 8.2GB | ADDR: 0x7F
+                </text>
+            </svg>
         </div>
     );
 };
 
 const CompaniesShowcase = ({ onClose }) => {
     return (
-        <div className="showcase-page cinematic-journey-page">
+        <div className="showcase-page mission-log-page">
             <Navbar scrolled={true} onContactClick={() => window.location.hash = 'contact'} />
 
-            {/* Floating Back Button */}
             <motion.button
-                className="floating-back-btn"
+                className="secure-exit-btn"
                 onClick={onClose}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 215, 0, 0.1)' }}
             >
-                <ArrowLeft size={20} />
-                <span>Return</span>
+                <ArrowLeft size={18} />
+                <span>Secure Exit</span>
             </motion.button>
 
-            <div className="cinematic-container">
-                {/* Intro Section */}
-                <section className="cinematic-hero">
+            <div className="mission-container">
+                {/* System Init Sequence */}
+                <section className="init-sequence-hero">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1 }}
-                        className="hero-content"
+                        className="init-hud"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                     >
-                        <h1 className="giant-text">JOURNEY</h1>
-                        <p className="subtitle">5+ Years of Evolution & Impact</p>
-                        <div className="neural-scan-line"></div>
+                        <div className="init-header">SYSTEM_BOOT_SEQUENCE [v9.0.4]</div>
+                        <div className="init-terminal">
+                            <motion.div animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }}>_</motion.div>
+                            <p>AUTHENTICATING ROLE: AI_ENGINEER...</p>
+                            <p className="success">ACCESS_GRANTED: PROFESSIONAL_LOGS_v2025</p>
+                            <div className="loading-bar"><motion.div className="progress" initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 2 }}></motion.div></div>
+                        </div>
                     </motion.div>
-                    <div className="scroll-indicator">
-                        <div className="mouse"></div>
-                        <span>Explore Terminal</span>
-                    </div>
                 </section>
 
-                {/* Company Sections */}
+                {/* Mission Entries */}
                 {companiesTimeline.map((item, idx) => (
-                    <section key={idx} className={`cinematic-section ${idx % 2 === 0 ? 'align-left' : 'align-right'}`}>
-                        {/* Background Watermark */}
-                        <div className="watermark-text" style={{ color: `${item.color}08` }}>
-                            {item.company.split(' ')[0]}
+                    <section key={idx} className={`mission-section ${idx % 2 === 0 ? 'layout-left' : 'layout-right'}`}>
+                        {/* THE BALANCER: Architectural Wireframe on opposite side */}
+                        <div className="mission-wireframe-side">
+                            <WireframeDiagram color={item.color} />
+                            <div className="code-snapshot-overlay">
+                                <pre><code>{`
+for module in ${item.company.split(' ')[0].toLowerCase()}_core:
+    init_rag(vector_db)
+    optimize_latency(target=20ms)
+    secure_handshake(L3_PROTO)
+                                `}</code></pre>
+                            </div>
                         </div>
 
-                        {/* THE BALANCER: Technical Stream on opposite side */}
-                        <TechStream side={idx % 2 === 0 ? 'right' : 'left'} color={item.color} />
-
-                        <div className="hud-panel-wrapper">
+                        <div className="mission-hud-side">
                             <motion.div
-                                className="hud-panel"
-                                initial={{ opacity: 0, x: idx % 2 === 0 ? -100 : 100 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, margin: "-20% 0px" }}
-                                transition={{ duration: 0.8, ease: "circOut" }}
-                                style={{ '--panel-color': item.color }}
+                                className="mission-hud-card"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-10%" }}
+                                style={{ '--mission-color': item.color }}
                             >
-                                <div className="hud-corner top-left"></div>
-                                <div className="hud-glitch-overlay"></div>
+                                <div className="card-top-bar">
+                                    <div className="mission-id">LOG_MN: {idx + 1}</div>
+                                    <div className="mission-period">[{item.period}]</div>
+                                </div>
 
-                                <div className="hud-header">
-                                    <div className="company-logo-mini" style={{ background: `${item.color}20`, border: `1px solid ${item.color}40` }}>
-                                        <Briefcase size={20} style={{ color: item.color }} />
+                                <div className="card-header">
+                                    <div className="company-logo-v4" style={{ borderColor: item.color }}>
+                                        <Shield size={24} style={{ color: item.color }} />
                                     </div>
-                                    <div className="header-info">
-                                        <div className="hud-meta">
-                                            <span className="id-tag">REF_ID: 0x{idx + 1}A{idx}</span>
-                                            <span className="period-label">{item.period}</span>
-                                        </div>
-                                        <h2 className="company-title">{item.company}</h2>
+                                    <h2 className="company-name-v4">{item.company}</h2>
+                                </div>
+
+                                <div className="card-meta-row">
+                                    <div className="meta-item-v4">
+                                        <Activity size={14} />
+                                        <span>{item.type}</span>
+                                    </div>
+                                    <div className="meta-item-v4">
+                                        <Settings size={14} />
+                                        <span>{item.role}</span>
                                     </div>
                                 </div>
 
-                                <div className="hud-body">
-                                    <div className="role-hud-chip" style={{ borderLeft: `3px solid ${item.color}` }}>
-                                        <div className="chip-icon"><Cpu size={14} /></div>
-                                        <div className="chip-content">
-                                            <span className="label">DESIGNATION</span>
-                                            <span className="value">{item.role}</span>
-                                        </div>
-                                    </div>
-
-                                    <p className="description-text">{item.description}</p>
-
-                                    <div className="tech-matrix-v2">
-                                        <div className="matrix-label">KEY_CAPABILITIES:</div>
-                                        <div className="matrix-grid">
-                                            {item.highlights.map((h, i) => (
-                                                <div key={i} className="matrix-pill">
-                                                    <div className="pill-dot" style={{ background: item.color }}></div>
-                                                    <span>{h}</span>
-                                                </div>
-                                            ))}
-                                        </div>
+                                <div className="card-content-v4">
+                                    <p className="description-v4">{item.description}</p>
+                                    <div className="capabilities-grid">
+                                        {item.highlights.map((h, i) => (
+                                            <div key={i} className="capability-tag" style={{ borderLeft: `2px solid ${item.color}40` }}>
+                                                {h}
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
 
-                                <div className="hud-footer">
-                                    <div className="hud-footer-stats">
-                                        <div className="status-item">
-                                            <Activity size={10} />
-                                            <span>ACTIVE: {item.type}</span>
-                                        </div>
-                                        <div className="status-item">
-                                            <Terminal size={10} />
-                                            <span>VERIFIED: L3_ARCH</span>
-                                        </div>
-                                    </div>
-                                    <div className="hud-scan-line"></div>
+                                <div className="card-status-v4">
+                                    <div className="status-label">STATUS: ARCHIVED_SUCCESS</div>
+                                    <div className="status-id">HASH: 0x{idx}F{idx * 7}E{idx}</div>
                                 </div>
                             </motion.div>
                         </div>
 
-                        {/* Visual Decoration */}
-                        <div className="decoration-elements">
-                            <div className="beam" style={{ background: `linear-gradient(to bottom, transparent, ${item.color}30, transparent)` }}></div>
+                        {/* Massive Sidebar Header */}
+                        <div className="sidebar-header" style={{ color: `${item.color}15` }}>
+                            {item.company}
                         </div>
                     </section>
                 ))}

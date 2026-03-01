@@ -1,152 +1,96 @@
-/* Neural Vault Styles V3 */
-.neural-vault-page {
-    background: #020202;
+/* Tactical Blueprint V4 Styles */
+.blueprint-vault-page {
+    background: #00121a;
+    /* Dark blueprint blue */
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
 }
 
-.circuit-traces-bg {
+.blueprint-mesh {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
 }
 
-.vault-container {
-    max-width: 1400px;
+.vertical-lines,
+.horizontal-lines {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.vertical-lines {
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.ruler {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.ruler.top {
+    top: 5rem;
+    left: 10%;
+    right: 10%;
+    height: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ruler.left {
+    top: 10%;
+    bottom: 10%;
+    left: 5rem;
+    width: 30px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dossier-container {
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 8rem 2rem 4rem;
+    padding: 10rem 2rem 6rem;
     position: relative;
     z-index: 1;
 }
 
-.vault-hero {
+.dossier-hero {
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 8rem;
 }
 
-.sc-label {
-    font-family: monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 1rem;
-    opacity: 0.6;
-}
-
-.vault-title-v3 {
-    font-size: 5rem;
+.dossier-title {
+    font-size: 4rem;
     font-weight: 900;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.2));
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.vault-stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
+.blue-tint {
+    color: #0088cc;
+}
+
+.dossier-subtitle {
     font-family: monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 1rem 0 2rem;
 }
 
-.v-stat .green {
-    color: #00ff88;
-}
-
-.v-stat .white {
-    color: #fff;
-}
-
-/* Micro Module Cards */
-.circuit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2.5rem;
-}
-
-.micro-module-card {
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-    padding: 2.5rem;
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: hidden;
-}
-
-.micro-module-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--module-color);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(var(--module-color), 0.1);
-}
-
-.module-scanner {
-    position: absolute;
-    top: -100%;
-    left: 0;
-    right: 0;
-    height: 30%;
-    background: linear-gradient(to bottom, transparent, var(--module-color), transparent);
-    opacity: 0.05;
-    pointer-events: none;
-    animation: moduleScan 4s infinite linear;
-}
-
-@keyframes moduleScan {
-    0% {
-        top: -30%;
-    }
-
-    100% {
-        top: 130%;
-    }
-}
-
-.module-header {
+.dossier-divider {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 2.5rem;
-}
-
-.icon-fusion-container {
-    position: relative;
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
     justify-content: center;
+    color: #0088cc;
+    opacity: 0.4;
 }
 
-.fusion-outer-ring {
-    position: absolute;
-    opacity: 0.1;
-    color: var(--module-color);
-    animation: rotateOuter 20s infinite linear;
+.orbit-icon {
+    animation: rotateCompass 5s infinite linear;
 }
 
-.fusion-main-icon {
-    color: #fff;
-    z-index: 2;
-    filter: drop-shadow(0 0 10px var(--module-color));
-}
-
-.fusion-pulse {
-    position: absolute;
-    inset: 0;
-    border: 2px solid var(--module-color);
-    border-radius: 50%;
-    opacity: 0;
-    animation: fusionPulse 3s infinite;
-}
-
-@keyframes rotateOuter {
+@keyframes rotateCompass {
     from {
         transform: rotate(0deg);
     }
@@ -156,118 +100,167 @@
     }
 }
 
-@keyframes fusionPulse {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 0.3;
-    }
-
-    100% {
-        transform: scale(1.5);
-        opacity: 0;
-    }
+/* Blueprint Cards */
+.blueprint-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 }
 
-.module-serial {
+.blueprint-card {
+    background: rgba(0, 30, 45, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 136, 204, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-blueprint-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+.card-layout-v4 {
+    display: flex;
+    padding: 3rem;
+    gap: 3rem;
+}
+
+.drawing-side {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-right: 3rem;
+}
+
+.technical-symbol {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame-icon {
+    position: absolute;
+    opacity: 0.3;
+    color: var(--blueprint-color);
+}
+
+.center-icon {
+    color: #fff;
+    z-index: 2;
+}
+
+.spec-label {
     font-family: monospace;
     font-size: 0.6rem;
+    margin-top: 2rem;
     color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.1em;
 }
 
-.module-issuer {
+.info-side {
+    flex: 1;
+}
+
+.issuer-v4 {
+    font-family: monospace;
     font-size: 0.7rem;
-    color: var(--gold);
+    color: var(--blueprint-color);
     letter-spacing: 0.2em;
     font-weight: 700;
 }
 
-.module-name {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0.75rem 0 1.5rem;
-    line-height: 1.3;
+.title-v4 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin: 0.5rem 0 1.5rem;
+    color: #fff;
 }
 
-.module-divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, var(--module-color), transparent);
+.tag-v4 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 1.5rem;
 }
 
-.meta-tag {
+.desc-v4 {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2rem;
+}
+
+.credential-chip {
     display: flex;
-    gap: 0.75rem;
+    flex-direction: column;
+}
+
+.credential-chip .label {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.1em;
+}
+
+.credential-chip .value {
     font-family: monospace;
-    font-size: 0.7rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
-.tag-key {
-    color: rgba(255, 255, 255, 0.3);
-}
-
-.tag-val {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.module-footer {
-    margin-top: 2.5rem;
-}
-
-.access-btn {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.75rem;
-    text-align: center;
-    font-size: 0.65rem;
-    font-family: monospace;
-    letter-spacing: 0.2em;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.access-btn:hover {
-    color: var(--module-color);
-}
-
-/* Corner Brackets */
-.corner-bracket {
+.blueprint-stamp {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    border: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-.corner-bracket.tr {
-    top: 10px;
-    right: 10px;
-    border-left: 0;
-    border-bottom: 0;
-}
-
-.corner-bracket.bl {
-    bottom: 10px;
-    left: 10px;
-    border-right: 0;
-    border-top: 0;
+    top: 2rem;
+    right: -2rem;
+    border: 3px solid rgba(0, 136, 204, 0.3);
+    padding: 0.5rem 2rem;
+    font-weight: 900;
+    color: rgba(0, 136, 204, 0.3);
+    transform: rotate(45deg);
+    font-family: monospace;
+    pointer-events: none;
 }
 
 /* Response */
-@media (max-width: 768px) {
-    .vault-title-v3 {
-        font-size: 3rem;
-    }
-
-    .vault-stats-row {
+@media (max-width: 900px) {
+    .card-layout-v4 {
         flex-direction: column;
-        gap: 0.5rem;
+        padding: 2rem;
     }
 
-    .circuit-grid {
-        grid-template-columns: 1fr;
+    .drawing-side {
+        width: 100%;
+        border-right: 0;
+        padding-right: 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .dossier-title {
+        font-size: 2.5rem;
+    }
+
+    .secure-exit-btn {
+        bottom: 2rem;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ruler {
+        display: none;
     }
 }
