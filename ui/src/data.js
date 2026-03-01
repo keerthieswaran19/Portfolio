@@ -15,6 +15,11 @@ export const resumeData = {
     ],
     experience: [
         {
+            company: "Nohitatu Technologies",
+            role: "AI Developer",
+            period: "11/2025 - 03/2026"
+        },
+        {
             company: "IT Resonance Inc",
             role: "Gen AI with SAP BTP Program",
             period: "04/2025 - 08/2025"
@@ -105,3 +110,56 @@ export const resumeData = {
         { name: "DeepLearning.AI - Generative AI with LLMs" }
     ]
 };
+
+export const upcomingProjects = [
+    {
+        title: "Enterprise Knowledge Agent",
+        description: "Autonomous agent system for deep organizational knowledge retrieval using graph databases and advanced RAG.",
+        status: "In Development",
+        icon: "🧠"
+    },
+    {
+        title: "SAP BTP Automation Suite",
+        description: "A comprehensive suite of tools leveraging machine learning to automate complex SAP workflows.",
+        status: "Planning",
+        icon: "⚡"
+    },
+    {
+        title: "Predictive Analytics Engine",
+        description: "Real-time data processing engine for e-commerce trends forecasting.",
+        status: "Concept",
+        icon: "📈"
+    }
+];
+
+export const companiesTimeline = [
+    { company: "Nohitatu Technologies", role: "AI Developer", period: "11/2025 - 03/2026", color: "#ffd700" },
+    { company: "IT Resonance Inc", role: "Gen AI / SAP BTP", period: "04/2025 - 08/2025", color: "#4cc9f0" },
+    { company: "Williams Lea", role: "Infographics Design", period: "12/2024 - 03/2025", color: "#ff9900" },
+    { company: "Access Healthcare", role: "Asst Client Partner", period: "07/2022 - 06/2023", color: "#25d366" },
+    { company: "Transteel", role: "Consultant / BI", period: "08/2021 - 02/2022", color: "#9d4edd" }
+];
+
+export const certificationsDetails = [
+    {
+        name: "SAP Certified Associate",
+        issuer: "SAP",
+        date: "2024",
+        type: "Backend Developer (CAP)",
+        badge: "🥇"
+    },
+    {
+        name: "Generative AI with LLMs",
+        issuer: "DeepLearning.AI",
+        date: "2024",
+        type: "Specialization",
+        badge: "🎓"
+    },
+    {
+        name: "Cloud Architecture Foundations",
+        issuer: "AWS",
+        date: "2023",
+        type: "Cloud Computing",
+        badge: "☁️"
+    }
+];

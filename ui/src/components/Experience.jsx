@@ -5,6 +5,19 @@ import './Experience.css';
 
 const experiences = [
     {
+        company: "Nohitatu Technologies",
+        role: "AI Developer",
+        period: "11/2025 – 03/2026",
+        location: "Full-time",
+        description: "Spearheaded AI-driven workflow automation and intelligent retrieval systems, bridging the gap between CRM platforms and modern AI capabilities.",
+        achievements: [
+            "Architected and deployed automated CRM pipelines using n8n, cutting manual data processing time by 60% and boosting cross-team efficiency",
+            "Engineered RAG-based intelligent retrieval modules within task management systems, enabling context-aware automation and semantic search",
+            "Established robust data governance protocols for client information, balancing AI model performance optimization with enterprise-grade security compliance"
+        ],
+        tech: ["n8n", "RAG", "LangChain", "CRM Automation", "AI/ML", "Data Security"]
+    },
+    {
         company: "IT Resonance Inc",
         role: "Gen AI with SAP BTP Program",
         period: "04/2025 - 08/2025",
