@@ -14,6 +14,18 @@ const ProjectsShowcase = ({ onClose }) => {
         <div className="showcase-page projects-showcase-page">
             <Navbar scrolled={true} onContactClick={() => window.location.hash = 'contact'} />
 
+            {/* Floating Back Button */}
+            <motion.button
+                className="floating-back-btn"
+                onClick={onClose}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 215, 0, 0.1)' }}
+            >
+                <ArrowLeft size={20} />
+                <span>Return</span>
+            </motion.button>
+
             <header className="showcase-header">
                 <button className="back-btn" onClick={onClose}>
                     <ArrowLeft size={24} />
