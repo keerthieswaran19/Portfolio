@@ -1,58 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { ArrowLeft, Briefcase, Cpu, Shield, Terminal, Settings, Activity, HardDrive, Share2, Code2 } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Shield, Box, Hexagon, Circle, Triangle } from 'lucide-react';
 import { companiesTimeline } from '../data';
 import Navbar from './Navbar';
 import Signature from './Signature';
 import './CompaniesShowcase.css';
 
-const ImpactTicker = ({ value, label, color }) => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        let start = 0;
-        const end = parseInt(value.replace(/[^0-9]/g, "")) || 100;
-        const duration = 2000;
-        const increment = end / (duration / 16);
-
-        const timer = setInterval(() => {
-            start += increment;
-            if (start >= end) {
-                setCount(end);
-                clearInterval(timer);
-            } else {
-                setCount(Math.floor(start));
-            }
-        }, 16);
-        return () => clearInterval(timer);
-    }, [value]);
-
-    return (
-        <div className="impact-ticker">
-            <div className="ticker-value" style={{ color }}>{count}{value.includes('%') ? '%' : '+'}</div>
-            <div className="ticker-label">{label}</div>
+// Abstract CSS Hologram Components to fill blank space uniquely without text clutter
+const HologramSphere = ({ color }) => (
+    <div className="holo-container">
+        <div className="holo-sphere" style={{ '--color': color }}>
+            <div className="ring r1"></div>
+            <div className="ring r2"></div>
+            <div className="ring r3"></div>
+            <div className="core"><Circle size={32} /></div>
         </div>
-    );
-};
+    </div>
+);
 
-const ArchitectureNode = ({ color }) => (
-    <div className="node-map">
-        <svg width="100%" height="80" viewBox="0 0 200 80">
-            <motion.path d="M20 40H60M140 40H180" stroke={color} strokeWidth="1" strokeDasharray="4 2" />
-            <motion.rect x="60" y="20" width="80" height="40" rx="4" stroke={color} fill={`${color}10`} />
-            <circle cx="20" cy="40" r="4" fill={color} />
-            <circle cx="180" cy="40" r="4" fill={color} />
-            <text x="70" y="45" fill={color} fontSize="8" fontFamily="monospace">CORE_ENGINE</text>
-        </svg>
+const HologramCube = ({ color }) => (
+    <div className="holo-container">
+        <div className="holo-cube" style={{ '--color': color }}>
+            <div className="face f-front"></div>
+            <div className="face f-back"></div>
+            <div className="face f-right"></div>
+            <div className="face f-left"></div>
+            <div className="face f-top"></div>
+            <div className="face f-bottom"></div>
+            <div className="core"><Box size={32} /></div>
+        </div>
+    </div>
+);
+
+const HologramHex = ({ color }) => (
+    <div className="holo-container">
+        <div className="holo-hex" style={{ '--color': color }}>
+            <Hexagon size={150} strokeWidth={0.5} className="hex-outer" />
+            <Hexagon size={100} strokeWidth={1} className="hex-mid" />
+            <Hexagon size={50} strokeWidth={2} className="hex-inner" />
+            <div className="core"><Triangle size={24} /></div>
+        </div>
     </div>
 );
 
 const CompaniesShowcase = ({ onClose }) => {
-    const { scrollYProgress } = useScroll();
-    const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+    // Alternate holograms based on index
+    const getHologram = (idx, color) => {
+        if (idx % 3 === 0) return <HologramSphere color={color} />;
+        if (idx % 3 === 1) return <HologramCube color={color} />;
+        return <HologramHex color={color} />;
+    };
 
     return (
-        <div className="showcase-page matrix-pipeline-page">
+        <div className="showcase-page holographic-journey-page">
             <Navbar scrolled={true} onContactClick={() => window.location.hash = 'contact'} />
 
             <motion.button
@@ -65,118 +65,69 @@ const CompaniesShowcase = ({ onClose }) => {
                 <span>Secure Exit</span>
             </motion.button>
 
-            {/* Central Data Pipeline Spine */}
-            <div className="central-pipeline-spine">
-                <motion.div className="pipeline-line" style={{ scaleY }}></motion.div>
-                <div className="pipeline-glow"></div>
-            </div>
+            {/* Restored JOURNEY Title Background */}
+            <div className="massive-bg-title">JOURNEY</div>
 
-            <div className="pipeline-container">
-                {/* Boot Sequence Header */}
-                <section className="pipeline-hero">
-                    <motion.div className="boot-terminal-v5" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-                        <div className="terminal-header">
-                            <div className="dots"><span className="red"></span><span className="yellow"></span><span className="green"></span></div>
-                            <div className="title">professional_logs.sh</div>
-                        </div>
-                        <div className="terminal-body-v5">
-                            <p className="cmd">{'>>'} sudo access --career-matrix</p>
-                            <p className="response">[OK] AUTH_TOKEN_VALIDATED</p>
-                            <p className="response">[OK] DECRYPTING_MILESTONES...</p>
-                            <div className="load-sequence">
-                                <motion.div className="bar" initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 1.5 }}></motion.div>
-                            </div>
-                        </div>
+            <div className="journey-container-v6">
+
+                <header className="v6-hero">
+                    <motion.h1
+                        className="hero-title"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                    >
+                        PROFESSIONAL <br />
+                        <span className="gold-focus">ARCHIVE</span>
+                    </motion.h1>
+                    <motion.div className="scroll-indicator" animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+                        <span>SCROLL TO EXPLORE</span>
+                        <div className="line"></div>
                     </motion.div>
-                </section>
+                </header>
 
-                {/* Career Nodes */}
-                {companiesTimeline.map((item, idx) => (
-                    <section key={idx} className={`pipeline-node-section ${idx % 2 === 0 ? 'node-left' : 'node-right'}`}>
-                        {/* Data Connection Point */}
-                        <div className="node-connection-point">
-                            <div className="point-outer" style={{ borderColor: item.color }}>
-                                <div className="point-inner" style={{ backgroundColor: item.color }}></div>
+                <div className="v6-timeline">
+                    {companiesTimeline.map((item, idx) => (
+                        <section key={idx} className={`v6-section ${idx % 2 === 0 ? 'align-left' : 'align-right'}`}>
+
+                            {/* Hologram Side (Fills blank space uniquely) */}
+                            <div className="hologram-side">
+                                {getHologram(idx, item.color)}
                             </div>
-                        </div>
 
-                        <div className="node-content-side">
-                            <motion.div
-                                className="matrix-card-v5"
-                                initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, margin: "-10%" }}
-                                style={{ '--node-color': item.color }}
-                            >
-                                <div className="card-glitch-edge"></div>
-
-                                <div className="node-header-v5">
-                                    <div className="node-period-chip">
-                                        <Activity size={12} />
-                                        <span>EST: {item.period}</span>
-                                    </div>
-                                    <div className="node-id-chip">#NODE_00{idx + 1}</div>
-                                </div>
-
-                                <div className="node-main-v5">
-                                    <div className="node-title-group">
-                                        <h2 className="node-company">{item.company}</h2>
-                                        <div className="node-role-tag">
-                                            <Code2 size={14} />
-                                            <span>{item.role}</span>
-                                        </div>
+                            {/* Minimalist Data Side */}
+                            <div className="data-side">
+                                <motion.div
+                                    className="v6-glass-card"
+                                    initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-10%" }}
+                                    style={{ '--card-color': item.color }}
+                                >
+                                    <div className="card-top">
+                                        <div className="period-badge">{item.period}</div>
+                                        <div className="type-badge"><Shield size={12} /> {item.type}</div>
                                     </div>
 
-                                    <p className="node-description">{item.description}</p>
+                                    <h2 className="company-text">{item.company}</h2>
+                                    <h3 className="role-text">{item.role}</h3>
 
-                                    {/* Real Impact Metrics */}
-                                    <div className="node-impact-row">
-                                        <ImpactTicker value="40%" label="EFFICIENCY_BOOST" color={item.color} />
-                                        <ImpactTicker value="12" label="SYSTEMS_DEPLOYED" color={item.color} />
+                                    {/* Streamlined description */}
+                                    <p className="minimal-desc">{item.description}</p>
+
+                                    {/* Minimal Highlights (Just names, not blocks) */}
+                                    <div className="keywords-row">
+                                        {item.highlights.slice(0, 3).map((h, i) => (
+                                            <span key={i} className="keyword" style={{ color: item.color }}>• {h.split(' ')[0]}</span>
+                                        ))}
                                     </div>
 
-                                    {/* Architecture Visualization */}
-                                    <div className="node-sub-details">
-                                        <div className="detail-block">
-                                            <div className="detail-label">CORE_ARCHITECTURE</div>
-                                            <ArchitectureNode color={item.color} />
-                                        </div>
-                                        <div className="detail-block">
-                                            <div className="detail-label">TECH_STACK_SYNC</div>
-                                            <div className="tech-matrix-v5">
-                                                {item.highlights.map((h, i) => (
-                                                    <div key={i} className="tech-pill-v5">
-                                                        <div className="pill-status" style={{ background: item.color }}></div>
-                                                        {h}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="node-footer-v5">
-                                    <div className="system-status">
-                                        <Terminal size={12} />
-                                        <span>EXEC_SUCCESS_0x{idx}</span>
-                                    </div>
-                                    <div className="node-type-label">{item.type}</div>
-                                </div>
-                            </motion.div>
-                        </div>
-
-                        {/* Dynamic Project Sidebar */}
-                        <div className="node-sidebar-v5">
-                            <div className="sidebar-inner" style={{ color: `${item.color}20` }}>
-                                <div className="vert-text">{item.company.toUpperCase()}</div>
-                                <div className="sidebar-icons">
-                                    <Share2 size={24} />
-                                    <HardDrive size={24} />
-                                </div>
+                                    <div className="aesthetic-bar"></div>
+                                </motion.div>
                             </div>
-                        </div>
-                    </section>
-                ))}
+
+                        </section>
+                    ))}
+                </div>
             </div>
             <Signature />
         </div>

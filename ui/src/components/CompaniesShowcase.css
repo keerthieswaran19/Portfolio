@@ -1,385 +1,372 @@
-/* Matrix Pipeline V5 Styles */
-.matrix-pipeline-page {
-    background: #000;
+/* Holographic Journey V6 Styles */
+.holographic-journey-page {
+    background: #030303;
     color: #fff;
     overflow-x: hidden;
     position: relative;
+    min-height: 100vh;
 }
 
-/* Central Spine */
-.central-pipeline-spine {
+/* Restored JOURNEY Background */
+.massive-bg-title {
     position: fixed;
+    top: 50%;
     left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: rgba(255, 255, 255, 0.03);
-    transform: translateX(-50%);
-    z-index: 10;
-}
-
-.pipeline-line {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    transform-origin: top;
-    box-shadow: 0 0 15px var(--gold);
-}
-
-.pipeline-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    font-size: 25vw;
+    font-weight: 950;
+    color: rgba(255, 255, 255, 0.02);
+    writing-mode: horizontal-tb;
+    z-index: 0;
     pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    letter-spacing: -0.05em;
 }
 
-/* Container */
-.pipeline-container {
+.journey-container-v6 {
+    position: relative;
+    z-index: 10;
     max-width: 1400px;
     margin: 0 auto;
-    position: relative;
-    z-index: 20;
 }
 
-/* Hero Terminal */
-.pipeline-hero {
+/* Hero */
+.v6-hero {
     height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
 }
 
-.boot-terminal-v5 {
-    width: 600px;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 215, 0, 0.1);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+.hero-title {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
 }
 
-.terminal-header {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.75rem 1rem;
+.gold-focus {
+    color: var(--gold);
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 4rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 1rem;
-}
-
-.terminal-header .dots {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.terminal-header .dots span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    opacity: 0.5;
-}
-
-.dots .red {
-    background: #ff5f56;
-}
-
-.dots .yellow {
-    background: #ffbd2e;
-}
-
-.dots .green {
-    background: #27c93f;
-}
-
-.terminal-header .title {
     font-family: monospace;
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.2em;
 }
 
-.terminal-body-v5 {
-    padding: 2.5rem;
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 0.9rem;
-    line-height: 2;
+.scroll-indicator .line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
 }
 
-.terminal-body-v5 .cmd {
-    color: var(--gold);
+/* Sections */
+.v6-timeline {
+    padding-bottom: 10rem;
 }
 
-.terminal-body-v5 .response {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.load-sequence {
-    width: 100%;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.05);
-    margin-top: 2rem;
-}
-
-.load-sequence .bar {
-    height: 100%;
-    background: var(--gold);
-}
-
-/* Pipeline Nodes */
-.pipeline-node-section {
-    min-height: 100vh;
+.v6-section {
+    min-height: 80vh;
     display: flex;
     align-items: center;
-    position: relative;
-    padding: 10rem 0;
+    padding: 0 5%;
+    margin-bottom: 5rem;
 }
 
-.node-left {
-    padding-right: 55%;
-    padding-left: 10%;
+.align-right {
+    flex-direction: row-reverse;
 }
 
-.node-right {
-    padding-left: 55%;
-    padding-right: 10%;
-    justify-content: flex-end;
-}
-
-.node-connection-point {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 30;
-}
-
-.point-outer {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #fff;
-    border-radius: 50%;
+.hologram-side {
+    flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: #000;
-}
-
-.point-inner {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px currentColor;
-}
-
-/* Matrix Card */
-.matrix-card-v5 {
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(40px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 4rem;
-    position: relative;
-    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
-    width: 100%;
-    max-width: 600px;
-}
-
-.card-glitch-edge {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
+    align-items: center;
     height: 100%;
-    background: var(--node-color);
 }
 
-.node-header-v5 {
+.data-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Minimalist Glass Card */
+.v6-glass-card {
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4rem;
+    width: 100%;
+    max-width: 550px;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    border-top: 3px solid var(--card-color);
+}
+
+.card-top {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2rem;
     font-family: monospace;
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.3);
-    margin-bottom: 2.5rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.period-badge {
+    color: var(--card-color);
+    font-weight: 700;
     letter-spacing: 0.1em;
 }
 
-.node-period-chip {
+.type-badge {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    color: var(--node-color);
-    font-weight: 700;
+    gap: 0.5rem;
 }
 
-.node-title-group {
-    margin-bottom: 2rem;
-}
-
-.node-company {
-    font-size: 3rem;
+.company-text {
+    font-size: 3.5rem;
     font-weight: 900;
     letter-spacing: -1px;
+    line-height: 1.1;
     margin-bottom: 0.5rem;
 }
 
-.node-role-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
+.role-text {
+    font-size: 1.2rem;
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2.5rem;
 }
 
-.node-description {
-    font-size: 1.15rem;
+.minimal-desc {
+    font-size: 1.05rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 3rem;
 }
 
-/* Impact Tickers */
-.node-impact-row {
+.keywords-row {
     display: flex;
-    gap: 3rem;
-    margin-bottom: 4rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.impact-ticker {
-    display: flex;
-    flex-direction: column;
-}
-
-.ticker-value {
-    font-size: 2.2rem;
-    font-weight: 900;
-}
-
-.ticker-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: rgba(255, 255, 255, 0.3);
-    margin-top: 0.5rem;
-}
-
-/* Details Blocks */
-.node-sub-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-}
-
-.detail-label {
-    font-size: 0.65rem;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.2);
-    letter-spacing: 0.3em;
-    margin-bottom: 1.5rem;
-}
-
-.tech-matrix-v5 {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-}
-
-.tech-pill-v5 {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.pill-status {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-}
-
-/* Footer */
-.node-footer-v5 {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
+    gap: 1.5rem;
     font-family: monospace;
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.8rem;
+    opacity: 0.8;
 }
 
-/* Sidebar Text */
-.node-sidebar-v5 {
+.aesthetic-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    height: 2px;
+    background: var(--card-color);
+    box-shadow: 0 0 10px var(--card-color);
+}
+
+/* =========================================
+   ABSTRACT CSS HOLOGRAMS
+   ========================================= */
+.holo-container {
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.core {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color);
+    filter: drop-shadow(0 0 10px var(--color));
+    animation: corePulse 2s infinite alternate;
 }
 
-.node-left .node-sidebar-v5 {
-    left: 90%;
+@keyframes corePulse {
+    from {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
 }
 
-.node-right .node-sidebar-v5 {
-    right: 90%;
+/* 1. Hologram Sphere */
+.holo-sphere {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateSphere 10s infinite linear;
 }
 
-.sidebar-inner {
+.holo-sphere .ring {
+    position: absolute;
+    inset: 0;
+    border: 1px dashed var(--color);
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.holo-sphere .r1 {
+    transform: rotateY(0deg);
+}
+
+.holo-sphere .r2 {
+    transform: rotateY(60deg);
+    border-style: solid;
+    opacity: 0.1;
+}
+
+.holo-sphere .r3 {
+    transform: rotateY(120deg);
+}
+
+@keyframes rotateSphere {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+/* 2. Hologram Cube */
+.holo-cube {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 15s infinite linear;
+}
+
+.holo-cube .face {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--color);
+    background: radial-gradient(circle at center, transparent, rgba(0, 0, 0, 0.8));
+    opacity: 0.3;
+}
+
+.f-front {
+    transform: translateZ(75px);
+}
+
+.f-back {
+    transform: translateZ(-75px) rotateY(180deg);
+}
+
+.f-right {
+    transform: rotateY(90deg) translateZ(75px);
+}
+
+.f-left {
+    transform: rotateY(-90deg) translateZ(75px);
+}
+
+.f-top {
+    transform: rotateX(90deg) translateZ(75px);
+}
+
+.f-bottom {
+    transform: rotateX(-90deg) translateZ(75px);
+}
+
+@keyframes rotateCube {
+    from {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+/* 3. Hologram Hex */
+.holo-hex {
+    position: relative;
+    width: 200px;
+    height: 200px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 4rem;
+    color: var(--color);
 }
 
-.vert-text {
-    writing-mode: vertical-lr;
-    font-size: 6rem;
-    font-weight: 950;
-    letter-spacing: 0.2em;
+.hex-outer {
+    position: absolute;
+    animation: spinHex 20s infinite linear;
+    opacity: 0.2;
 }
 
-/* Response */
-@media (max-width: 1200px) {
+.hex-mid {
+    position: absolute;
+    animation: spinHex 15s infinite linear reverse;
+    opacity: 0.4;
+}
 
-    .node-left,
-    .node-right {
-        padding: 5rem 5%;
+.hex-inner {
+    position: absolute;
+    animation: spinHex 10s infinite linear;
+    opacity: 0.6;
+}
+
+@keyframes spinHex {
+    from {
+        transform: rotate(0deg);
     }
 
-    .central-pipeline-spine {
-        left: 2rem;
-        transform: none;
-    }
-
-    .node-connection-point {
-        left: 2rem;
-    }
-
-    .node-sidebar-v5 {
-        display: none;
-    }
-
-    .matrix-card-v5 {
-        padding: 2.5rem;
+    to {
+        transform: rotate(360deg);
     }
 }
 
-@media (max-width: 768px) {
-    .node-company {
-        font-size: 2rem;
-    }
-
-    .node-impact-row {
+/* Responsive */
+@media (max-width: 1024px) {
+    .v6-section {
         flex-direction: column;
-        gap: 2rem;
+        justify-content: center;
+        gap: 4rem;
+        padding-top: 5rem;
     }
 
-    .node-sub-details {
-        grid-template-columns: 1fr;
+    .align-right {
+        flex-direction: column;
     }
 
-    .matrix-card-v5 {
-        padding: 2rem;
+    .hologram-side {
+        height: 200px;
+        flex: none;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .massive-bg-title {
+        font-size: 30vw;
     }
 }
