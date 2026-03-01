@@ -1,96 +1,138 @@
-/* Tactical Blueprint V4 Styles */
-.blueprint-vault-page {
-    background: #00121a;
-    /* Dark blueprint blue */
+/* Neural Schema V5 Styles */
+.blueprint-page-v5 {
+    background: #000c14;
+    /* Deep blueprint navy */
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
 }
 
-.blueprint-mesh {
+.blueprint-overlay-v5 {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
-}
-
-.vertical-lines,
-.horizontal-lines {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-}
-
-.vertical-lines {
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.ruler {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.ruler.top {
-    top: 5rem;
-    left: 10%;
-    right: 10%;
-    height: 30px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.ruler.left {
-    top: 10%;
-    bottom: 10%;
-    left: 5rem;
-    width: 30px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dossier-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 10rem 2rem 6rem;
-    position: relative;
     z-index: 1;
 }
 
-.dossier-hero {
-    text-align: center;
-    margin-bottom: 8rem;
+.grid-layer {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 136, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 136, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-.dossier-title {
-    font-size: 4rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.9);
+.axis-layer {
+    position: absolute;
+    inset: 0;
+}
+
+.axis-x {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10rem;
+    height: 1px;
+    background: rgba(0, 136, 255, 0.1);
+}
+
+.axis-y {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10rem;
+    width: 1px;
+    background: rgba(0, 136, 255, 0.1);
+}
+
+.corner-markers .marker {
+    position: absolute;
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: rgba(0, 136, 255, 0.2);
+    font-weight: 300;
+}
+
+.tl {
+    top: 2rem;
+    left: 2rem;
+}
+
+.tr {
+    top: 2rem;
+    right: 2rem;
+}
+
+.bl {
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.br {
+    bottom: 2rem;
+    right: 2rem;
+}
+
+/* Container */
+.blueprint-container-v5 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10rem 2rem 6rem;
+    position: relative;
+    z-index: 10;
+}
+
+.blueprint-tag {
+    font-family: monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: #00ccff;
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+}
+
+.blueprint-title-v5 {
+    font-size: 5rem;
+    font-weight: 950;
+    letter-spacing: 0.05em;
+    color: #fff;
+    margin-bottom: 1rem;
 }
 
 .blue-tint {
-    color: #0088cc;
+    color: #00ccff;
+    text-shadow: 0 0 30px rgba(0, 204, 255, 0.3);
 }
 
-.dossier-subtitle {
+.blueprint-subtitle-v5 {
     font-family: monospace;
     font-size: 0.8rem;
-    letter-spacing: 0.3em;
     color: rgba(255, 255, 255, 0.4);
-    margin: 1rem 0 2rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 3rem;
 }
 
-.dossier-divider {
+.blueprint-header-ornament {
     display: flex;
+    align-items: center;
+    gap: 2rem;
     justify-content: center;
-    color: #0088cc;
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
-.orbit-icon {
-    animation: rotateCompass 5s infinite linear;
+.spinner {
+    animation: rotateS 10s infinite linear;
+    color: #00ccff;
 }
 
-@keyframes rotateCompass {
+.ornament-line {
+    width: 100px;
+    height: 1px;
+    background: #00ccff;
+}
+
+@keyframes rotateS {
     from {
         transform: rotate(0deg);
     }
@@ -100,167 +142,263 @@
     }
 }
 
-/* Blueprint Cards */
-.blueprint-stack {
+/* Dossier Grid */
+.blueprint-dossier-grid {
     display: flex;
     flex-direction: column;
+    gap: 5rem;
+    margin-top: 8rem;
+}
+
+.dossier-blueprint-card {
+    background: rgba(0, 20, 30, 0.7);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(0, 204, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+
+.dossier-blueprint-card:hover {
+    border-color: #00ccff;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.card-blueprint-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(0, 204, 255, 0.03) 1px, transparent 0);
+    background-size: 15px 15px;
+    z-index: -1;
+}
+
+.card-edge-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 204, 255, 0.05);
+    border-right: 1px dashed rgba(0, 204, 255, 0.1);
+}
+
+.card-edge-markers span {
+    writing-mode: vertical-lr;
+    font-size: 0.55rem;
+    color: rgba(0, 204, 255, 0.3);
+    margin-top: 1rem;
+    font-family: monospace;
+}
+
+.card-main-v5 {
+    display: flex;
+    padding: 4rem 4rem 4rem 7rem;
     gap: 4rem;
 }
 
-.blueprint-card {
-    background: rgba(0, 30, 45, 0.6);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 136, 204, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.card-blueprint-overlay {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
-    background-size: 20px 20px;
-    pointer-events: none;
-}
-
-.card-layout-v4 {
-    display: flex;
-    padding: 3rem;
-    gap: 3rem;
-}
-
-.drawing-side {
-    width: 120px;
+/* Visual Side */
+.visual-side {
+    width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 1px dashed rgba(255, 255, 255, 0.1);
-    padding-right: 3rem;
 }
 
-.technical-symbol {
+.blueprint-symbol-synthesis {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid rgba(0, 204, 255, 0.1);
 }
 
-.frame-icon {
+.outer-frame {
     position: absolute;
-    opacity: 0.3;
+    opacity: 0.2;
     color: var(--blueprint-color);
 }
 
-.center-icon {
-    color: #fff;
+.inner-icon {
     z-index: 2;
+    color: #fff;
+    filter: drop-shadow(0 0 10px var(--blueprint-color));
 }
 
-.spec-label {
+.scan-beam-v5 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--blueprint-color);
+    box-shadow: 0 0 15px var(--blueprint-color);
+}
+
+.symbol-id {
     font-family: monospace;
     font-size: 0.6rem;
-    margin-top: 2rem;
     color: rgba(255, 255, 255, 0.2);
-    letter-spacing: 0.1em;
+    margin-top: 2rem;
 }
 
-.info-side {
+/* Data Side */
+.data-side {
     flex: 1;
 }
 
-.issuer-v4 {
+.issuer-v5 {
     font-family: monospace;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--blueprint-color);
+    font-weight: 800;
     letter-spacing: 0.2em;
-    font-weight: 700;
 }
 
-.title-v4 {
-    font-size: 1.8rem;
+.title-v5 {
+    font-size: 2.2rem;
     font-weight: 900;
     margin: 0.5rem 0 1.5rem;
-    color: #fff;
+    line-height: 1.2;
 }
 
-.tag-v4 {
+.meta-tag-blue {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.4rem 0.8rem;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 1.5rem;
-}
-
-.desc-v4 {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.5);
+    gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 204, 255, 0.05);
+    border: 1px solid rgba(0, 204, 255, 0.1);
+    font-size: 0.8rem;
+    color: rgba(0, 204, 255, 0.6);
     margin-bottom: 2rem;
 }
 
-.credential-chip {
+.description-v5 {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 3rem;
+}
+
+.credential-block-v5 {
     display: flex;
     flex-direction: column;
 }
 
-.credential-chip .label {
-    font-size: 0.6rem;
+.credential-block-v5 .label {
+    font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.2);
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
 }
 
-.credential-chip .value {
+.credential-block-v5 .value {
     font-family: monospace;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
 }
 
-.blueprint-stamp {
+.blueprint-stamp-v5 {
     position: absolute;
-    top: 2rem;
-    right: -2rem;
-    border: 3px solid rgba(0, 136, 204, 0.3);
-    padding: 0.5rem 2rem;
-    font-weight: 900;
-    color: rgba(0, 136, 204, 0.3);
-    transform: rotate(45deg);
+    top: 3rem;
+    right: -3rem;
+    border: 2px solid rgba(0, 204, 255, 0.2);
+    padding: 0.5rem 3rem;
     font-family: monospace;
+    font-weight: 950;
+    color: rgba(0, 204, 255, 0.2);
+    transform: rotate(45deg);
     pointer-events: none;
 }
 
-/* Response */
+/* Magnify Overlay */
+.schema-magnify-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 10, 15, 0.9);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.magnify-window {
+    width: 80%;
+    max-width: 500px;
+    background: #000;
+    border: 1px solid;
+    padding: 2.5rem;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.window-header {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.window-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.spec-data {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    font-family: monospace;
+    font-size: 0.75rem;
+}
+
+.data-row .green {
+    color: #00ff88;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
-    .card-layout-v4 {
+    .card-main-v5 {
         flex-direction: column;
-        padding: 2rem;
+        padding: 3rem;
     }
 
-    .drawing-side {
+    .blueprint-title-v5 {
+        font-size: 3rem;
+    }
+
+    .visual-side {
         width: 100%;
-        border-right: 0;
-        padding-right: 0;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        border-bottom: 1px dashed rgba(0, 204, 255, 0.1);
         padding-bottom: 2rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
-    .dossier-title {
-        font-size: 2.5rem;
+    .blueprint-dossier-grid {
+        gap: 3rem;
     }
 
-    .secure-exit-btn {
-        bottom: 2rem;
-        top: auto;
-        left: 50%;
-        transform: translateX(-50%);
+    .magnify-window {
+        width: 95%;
+        padding: 1.5rem;
     }
 
-    .ruler {
-        display: none;
+    .window-content {
+        flex-direction: column;
+        text-align: center;
     }
 }

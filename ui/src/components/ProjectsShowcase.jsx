@@ -16,23 +16,15 @@ const ProjectsShowcase = ({ onClose }) => {
 
             {/* Floating Back Button */}
             <motion.button
-                className="floating-back-btn"
+                className="secure-exit-btn"
                 onClick={onClose}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 215, 0, 0.1)' }}
             >
-                <ArrowLeft size={20} />
+                <ArrowLeft size={18} />
                 <span>Secure Exit</span>
             </motion.button>
-
-            <header className="showcase-header">
-                <button className="back-btn" onClick={onClose}>
-                    <ArrowLeft size={24} />
-                    <span>Back</span>
-                </button>
-                <h1 className="header-title">All Projects</h1>
-            </header>
 
             <div className="showcase-container">
                 {/* Hero Banner */}
