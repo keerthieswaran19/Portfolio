@@ -95,7 +95,7 @@
 }
 
 .blue-tint {
-    color: #0088cc;
+    color: var(--gold);
 }
 
 .dossier-subtitle {
@@ -109,7 +109,7 @@
 .dossier-divider {
     display: flex;
     justify-content: center;
-    color: #0088cc;
+    color: var(--gold);
     opacity: 0.4;
 }
 
