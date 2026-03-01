@@ -5,6 +5,9 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 import ContactPage from './components/ContactPage';
+import ProjectsShowcase from './components/ProjectsShowcase';
+import CompaniesShowcase from './components/CompaniesShowcase';
+import CertificationsShowcase from './components/CertificationsShowcase';
 import Navbar from './components/Navbar';
 import Signature from './components/Signature';
 import ChatBot from './components/ChatBot';
@@ -12,14 +15,20 @@ import './App.css';
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
-  const [showContactPage, setShowContactPage] = useState(false);
+  const [activePage, setActivePage] = useState(null);
+
   React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
     const handleHashChange = () => {
-      setShowContactPage(window.location.hash === '#contact');
+      const hash = window.location.hash;
+      if (hash === '#contact') setActivePage('contact');
+      else if (hash === '#showcase-projects') setActivePage('showcase-projects');
+      else if (hash === '#showcase-companies') setActivePage('showcase-companies');
+      else if (hash === '#showcase-certifications') setActivePage('showcase-certifications');
+      else setActivePage(null);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -39,19 +48,18 @@ function App() {
     window.location.hash = 'contact';
   };
 
-  const closeContact = () => {
-    // If we're at #contact, the browser's back button will take us to the previous state
-    // But for the in-app close button, we want to go back or clear hash
-    if (window.location.hash === '#contact') {
+  const closePage = () => {
+    if (window.location.hash) {
       window.history.back();
     } else {
       window.location.hash = '';
     }
   };
 
-  if (showContactPage) {
-    return <ContactPage onClose={closeContact} />;
-  }
+  if (activePage === 'contact') return <ContactPage onClose={closePage} />;
+  if (activePage === 'showcase-projects') return <ProjectsShowcase onClose={closePage} />;
+  if (activePage === 'showcase-companies') return <CompaniesShowcase onClose={closePage} />;
+  if (activePage === 'showcase-certifications') return <CertificationsShowcase onClose={closePage} />;
 
   return (
     <div className="app">
@@ -75,3 +83,4 @@ function App() {
 }
 
 export default App;
+
