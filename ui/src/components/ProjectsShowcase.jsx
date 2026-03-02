@@ -14,17 +14,13 @@ const ProjectsShowcase = ({ onClose }) => {
         <div className="showcase-page projects-showcase-page">
             <Navbar scrolled={true} onContactClick={() => window.location.hash = 'contact'} />
 
-            {/* Floating Back Button */}
-            <motion.button
-                className="secure-exit-btn"
-                onClick={onClose}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 215, 0, 0.1)' }}
-            >
-                <ArrowLeft size={18} />
-                <span>Secure Exit</span>
-            </motion.button>
+            <header className="showcase-header">
+                <button className="back-btn" onClick={onClose}>
+                    <ArrowLeft size={24} />
+                    <span>Back</span>
+                </button>
+                <h1 className="header-title">All Projects</h1>
+            </header>
 
             <div className="showcase-container">
                 {/* Hero Banner */}

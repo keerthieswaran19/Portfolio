@@ -1,372 +1,236 @@
-/* Holographic Journey V6 Styles */
-.holographic-journey-page {
-    background: #030303;
-    color: #fff;
-    overflow-x: hidden;
+/* Professional Roadmap Styles (Single Column Full-Width) */
+.companies-showcase-page {
+    background: #0a0a0a;
+}
+
+.professional-roadmap {
     position: relative;
-    min-height: 100vh;
+    max-width: 900px;
+    margin: 3rem auto 6rem;
+    padding: 2rem 1.5rem;
+    /* Better padding for mobile/desktop */
 }
 
-/* Restored JOURNEY Background */
-.massive-bg-title {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 25vw;
-    font-weight: 950;
-    color: rgba(255, 255, 255, 0.02);
-    writing-mode: horizontal-tb;
-    z-index: 0;
-    pointer-events: none;
-    user-select: none;
-    white-space: nowrap;
-    letter-spacing: -0.05em;
-}
-
-.journey-container-v6 {
-    position: relative;
-    z-index: 10;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* Hero */
-.v6-hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-}
-
-.hero-title {
-    font-size: 6rem;
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -2px;
-}
-
-.gold-focus {
-    color: var(--gold);
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-}
-
-.scroll-indicator {
+/* Roadmap line on the left for all nodes */
+.roadmap-core-line {
     position: absolute;
-    bottom: 4rem;
+    left: 2rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(255, 215, 0, 0.4) 5%,
+            rgba(255, 255, 255, 0.1) 20%,
+            rgba(255, 255, 255, 0.1) 80%,
+            rgba(255, 215, 0, 0.2) 95%,
+            transparent);
+}
+
+.roadmap-node {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+    width: 100%;
+    padding-left: 4.5rem;
+    /* Space for the line and dot */
+}
+
+.roadmap-node .timeline-dot {
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    background: #0a0a0a;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.roadmap-node .timeline-dot-inner {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+.roadmap-node:hover .timeline-dot {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.roadmap-node:hover .timeline-dot-inner {
+    background: var(--gold);
+}
+
+.roadmap-node .timeline-content-card {
+    width: 100%;
+    /* Take full width minus padding */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    z-index: 3;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Connecting line to the main track */
+.roadmap-node .timeline-content-card::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: -2.5rem;
+    width: 2.5rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.roadmap-node:hover .timeline-content-card {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(255, 215, 0, 0.3);
+    transform: translateX(10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    display: flex;
+    flex-wrap: wrap;
+    /* Better for smaller widths */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.company-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    font-family: monospace;
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 0.2em;
+    gap: 0.6rem;
 }
 
-.scroll-indicator .line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
-}
-
-/* Sections */
-.v6-timeline {
-    padding-bottom: 10rem;
-}
-
-.v6-section {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    padding: 0 5%;
-    margin-bottom: 5rem;
-}
-
-.align-right {
-    flex-direction: row-reverse;
-}
-
-.hologram-side {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.data-side {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-/* Minimalist Glass Card */
-.v6-glass-card {
-    background: rgba(15, 15, 15, 0.6);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 4rem;
-    width: 100%;
-    max-width: 550px;
-    position: relative;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    border-top: 3px solid var(--card-color);
-}
-
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    font-family: monospace;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.period-badge {
-    color: var(--card-color);
+.company-info h3 {
+    font-size: 1.7rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0;
 }
 
-.type-badge {
+.role-badge {
+    align-self: flex-start;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(255, 215, 0, 0.05);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-align: right;
+}
+
+.meta-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: flex-end;
+    gap: 0.6rem;
 }
 
-.company-text {
-    font-size: 3.5rem;
-    font-weight: 900;
-    letter-spacing: -1px;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-}
-
-.role-text {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 2.5rem;
-}
-
-.minimal-desc {
+.description-text {
     font-size: 1.05rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 2.5rem;
+    max-width: 750px;
 }
 
-.keywords-row {
+.tech-stack-row {
     display: flex;
-    gap: 1.5rem;
-    font-family: monospace;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-tag {
     font-size: 0.8rem;
-    opacity: 0.8;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
-.aesthetic-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 30%;
-    height: 2px;
-    background: var(--card-color);
-    box-shadow: 0 0 10px var(--card-color);
+.roadmap-node:hover .skill-tag {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
 }
 
-/* =========================================
-   ABSTRACT CSS HOLOGRAMS
-   ========================================= */
-.holo-container {
-    width: 300px;
-    height: 300px;
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--color);
-    filter: drop-shadow(0 0 10px var(--color));
-    animation: corePulse 2s infinite alternate;
-}
-
-@keyframes corePulse {
-    from {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(0.9);
+/* Responsive Roadmap */
+@media (max-width: 768px) {
+    .professional-roadmap {
+        margin: 2rem auto;
+        padding: 1rem;
     }
 
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-}
-
-/* 1. Hologram Sphere */
-.holo-sphere {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: rotateSphere 10s infinite linear;
-}
-
-.holo-sphere .ring {
-    position: absolute;
-    inset: 0;
-    border: 1px dashed var(--color);
-    border-radius: 50%;
-    opacity: 0.4;
-}
-
-.holo-sphere .r1 {
-    transform: rotateY(0deg);
-}
-
-.holo-sphere .r2 {
-    transform: rotateY(60deg);
-    border-style: solid;
-    opacity: 0.1;
-}
-
-.holo-sphere .r3 {
-    transform: rotateY(120deg);
-}
-
-@keyframes rotateSphere {
-    from {
-        transform: rotateX(0deg) rotateY(0deg);
+    .roadmap-node {
+        padding-left: 3rem;
+        margin-bottom: 3rem;
     }
 
-    to {
-        transform: rotateX(360deg) rotateY(360deg);
-    }
-}
-
-/* 2. Hologram Cube */
-.holo-cube {
-    width: 150px;
-    height: 150px;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: rotateCube 15s infinite linear;
-}
-
-.holo-cube .face {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border: 2px solid var(--color);
-    background: radial-gradient(circle at center, transparent, rgba(0, 0, 0, 0.8));
-    opacity: 0.3;
-}
-
-.f-front {
-    transform: translateZ(75px);
-}
-
-.f-back {
-    transform: translateZ(-75px) rotateY(180deg);
-}
-
-.f-right {
-    transform: rotateY(90deg) translateZ(75px);
-}
-
-.f-left {
-    transform: rotateY(-90deg) translateZ(75px);
-}
-
-.f-top {
-    transform: rotateX(90deg) translateZ(75px);
-}
-
-.f-bottom {
-    transform: rotateX(-90deg) translateZ(75px);
-}
-
-@keyframes rotateCube {
-    from {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    .roadmap-core-line {
+        left: 1rem;
     }
 
-    to {
-        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-    }
-}
-
-/* 3. Hologram Hex */
-.holo-hex {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color);
-}
-
-.hex-outer {
-    position: absolute;
-    animation: spinHex 20s infinite linear;
-    opacity: 0.2;
-}
-
-.hex-mid {
-    position: absolute;
-    animation: spinHex 15s infinite linear reverse;
-    opacity: 0.4;
-}
-
-.hex-inner {
-    position: absolute;
-    animation: spinHex 10s infinite linear;
-    opacity: 0.6;
-}
-
-@keyframes spinHex {
-    from {
-        transform: rotate(0deg);
+    .roadmap-node .timeline-dot {
+        left: 1rem;
     }
 
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .v6-section {
-        flex-direction: column;
-        justify-content: center;
-        gap: 4rem;
-        padding-top: 5rem;
+    .roadmap-node .timeline-content-card {
+        padding: 1.5rem;
     }
 
-    .align-right {
-        flex-direction: column;
+    .roadmap-node .timeline-content-card::before {
+        display: none;
     }
 
-    .hologram-side {
-        height: 200px;
-        flex: none;
+    .company-info h3 {
+        font-size: 1.35rem;
     }
 
-    .hero-title {
-        font-size: 4rem;
+    .card-meta {
+        text-align: left;
+        align-items: flex-start;
     }
 
-    .massive-bg-title {
-        font-size: 30vw;
+    .meta-item {
+        justify-content: flex-start;
+    }
+
+    .roadmap-node:hover .timeline-content-card {
+        transform: none;
+        /* Avoid shaking on mobile touch */
     }
 }
